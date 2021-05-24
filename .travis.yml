@@ -9,3 +9,14 @@ before_install:
 script:
     - docker run -e CI=true abhishekmyana/docker-reactnew npm run test
     
+deploy:
+    provider: elasticbeanstalk
+    region  : "us-east-2"
+    app     : "docker-reactnew"
+    env     : "Dockerreactnew-env"
+    bucket_name: "elasticbeanstalk-us-east-2-579265209435"
+    bucket_path: "docker-reactnew"
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY    
